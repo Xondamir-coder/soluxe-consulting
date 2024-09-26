@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--font-castoro: 'Castoro', sans-serif;
+	--font-cambay: 'Cambay', sans-serif;
+
+	--rgb-yellow: 183, 143, 71;
+	--rgb-black: 17, 29, 39;
+	--border-grey: rgb(192, 192, 192);
+	--yellow: rgb(var(--rgb-yellow));
+	--black: rgb(var(--rgb-black));
+}
+html {
+	/* default root font-size is 16px */
+	/* so minimum font-size: .8rem * 16px = 12.8px */
+	/* maximum font-size: 1.5rem * 16px = 24px  */
+	/* preferred font-size: 1% of viewport width + 0.3rem(that is 4.8px) */
+
+	/* default font sizes */
+	/* h1: 2em (or 32px) */
+	/* h2: 1.5em (or 24px) */
+	/* h3: 1.17em (or 18.72px) */
+	/* h4: 1em (or 16px) */
+	/* h5: 0.83em (or 13.28px) */
+	/* h6: 0.67em (or 10.72px) */
+	/* p: 1em (or 16px) */
+	font-size: clamp(0.8rem, 1vw + 0.3rem, 1.5rem);
+}
+body {
+	font-family: var(--font-castoro);
+	color: var(--black);
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+ul {
+	list-style: none;
+}
+button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: inherit;
+	font: inherit;
+}
+input {
+	font: inherit;
+	color: inherit;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+	pointer-events: none;
+}
