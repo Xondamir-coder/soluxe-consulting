@@ -2,7 +2,9 @@
 	<div class="lang__container">
 		<button class="lang" :aria-label="$t('aria-lang')" @click="toggleLang">
 			<Translate />
-			<p class="lang__text">{{ $i18n.locale }}</p>
+			<p class="lang__text">
+				{{ $i18n.locale == 'zh' ? '中文' : $i18n.locale }}
+			</p>
 			<ArrowDown class="lang__arrow" />
 			<input class="lang__input" type="checkbox" v-model="isLangToggled" />
 		</button>
@@ -15,7 +17,7 @@
 					class="lang__options-btn"
 					:aria-label="$t('aria-lang')"
 					@click="selectLang(locale)">
-					<p class="lang__options-text">{{ locale }}</p>
+					<p class="lang__options-text">{{ locale == 'zh' ? '中文' : locale }}</p>
 				</button>
 			</li>
 		</ul>

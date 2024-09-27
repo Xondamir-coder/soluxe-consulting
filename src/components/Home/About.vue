@@ -1,6 +1,6 @@
 <template>
-	<section class="about section-style" id="about">
-		<SectionLabel>{{ $t('link-about') }}</SectionLabel>
+	<section class="about" id="about">
+		<SectionTop>{{ $t('link-about') }}</SectionTop>
 		<div class="about__content">
 			<span class="about__title">
 				{{ $t('about-title-1') }}
@@ -20,8 +20,37 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import Ornament from '../Ornament.vue';
-import SectionLabel from '../SectionLabel.vue';
+import SectionTop from '../SectionTop.vue';
+import gsap from 'gsap';
+
+onMounted(() => {
+	const els = Array.from(document.querySelector('.about__content').children);
+	els.forEach(el => {
+		gsap.from(el, {
+			opacity: 0,
+			y: 40,
+			filter: 'blur(10px)',
+			scrollTrigger: {
+				trigger: el,
+				start: 'top 85%',
+				end: 'bottom 65%',
+				scrub: 1
+			}
+		});
+	});
+	gsap.from('.about__text', {
+		opacity: 0,
+		y: 40,
+		scrollTrigger: {
+			trigger: '.about__text',
+			start: 'top 80%',
+			end: 'bottom 80%',
+			scrub: 1
+		}
+	});
+});
 </script>
 
 <style lang="scss" scoped>
@@ -35,6 +64,8 @@ import SectionLabel from '../SectionLabel.vue';
 	}
 }
 .about {
+	padding-top: 2rem;
+	padding-bottom: max(10vw, 50px);
 	display: flex;
 	flex-direction: column;
 	gap: max(10vw, 50px);

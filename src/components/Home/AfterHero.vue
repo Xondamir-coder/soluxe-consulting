@@ -1,15 +1,15 @@
 <template>
-	<section id="services" class="services">
-		<div class="services__labels">
+	<section class="after">
+		<div class="after__labels">
 			<SectionLabel>{{ $t('link-services') }}</SectionLabel>
 			<SectionLabel>{{ $t('recruitment') }}</SectionLabel>
 		</div>
-		<div class="services__images">
+		<div class="after__images">
 			<img
 				width="1440"
 				height="760"
 				alt="banner"
-				class="services__image"
+				class="after__image"
 				v-for="(image, i) in images"
 				:key="image"
 				:src="image"
@@ -19,7 +19,7 @@
 </template>
 
 <style lang="scss" scoped>
-.services {
+.after {
 	display: flex;
 	flex-direction: column;
 	gap: max(1.5rem, 20px);
@@ -50,9 +50,9 @@
 
 <script setup>
 import SectionLabel from '../SectionLabel.vue';
-import image1 from '@/images/services-1.webp';
-import image2 from '@/images/services-2.webp';
-import image3 from '@/images/services-3.webp';
+import image1 from '@/images/after-1.webp';
+import image2 from '@/images/after-2.webp';
+import image3 from '@/images/after-3.webp';
 import { onMounted, ref } from 'vue';
 
 const intervalTime = 2; // seconds

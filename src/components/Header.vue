@@ -1,10 +1,10 @@
 <template>
 	<header class="header">
-		<Logo />
+		<a href="#"><Logo class="header__logo" /></a>
 		<div class="header__menu">
 			<ul class="header__list">
 				<li class="header__item" v-for="{ link, name } in links" :key="link">
-					<a :href="link" class="header__link" @click.prevent="navigateToSection(link)">
+					<a :href="link" class="header__link">
 						{{ name }}
 					</a>
 				</li>
@@ -17,11 +17,12 @@
 <script setup>
 import Logo from '@/components/Logo.vue';
 import { i18n } from '@/locales';
-import { computed, markRaw, onMounted } from 'vue';
+import { computed, markRaw, onMounted, ref } from 'vue';
 import LangSwitch from './LangSwitch.vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+const logoRef = ref();
 gsap.registerPlugin(ScrollTrigger);
 const links = computed(() => [
 	{
@@ -52,19 +53,6 @@ const scrollTrigger = {
 	scrub: 1
 };
 
-const navigateToSection = sectionId => {
-	const targetElement = document.getElementById(sectionId);
-
-	const headerOffset = 100; // Adjust this to your header height
-	const elementPosition = targetElement.getBoundingClientRect().top;
-	const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-	window.scrollTo({
-		top: offsetPosition,
-		behavior: 'smooth'
-	});
-};
-
 onMounted(() => {
 	gsap.to('.header', {
 		marginTop: 16,
@@ -84,7 +72,7 @@ onMounted(() => {
 			}
 		}
 	});
-	gsap.to('.logo__text', {
+	gsap.to(document.querySelector('.header__logo').querySelector('.logo__text'), {
 		width: 0,
 		opacity: 0,
 		scrollTrigger
@@ -93,6 +81,16 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@keyframes scale-appear {
+	0% {
+		transform: scale(1.3) translateY(20px);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
 .header {
 	display: grid;
 	align-items: center;
@@ -107,10 +105,13 @@ onMounted(() => {
 	left: 50%;
 	transform: translateX(-50%);
 	column-gap: 0.8rem;
-	transition: backdrop-filter 0.3s;
+	transition: backdrop-filter 1s;
 	border: 1px solid rgba(192, 192, 192, 0.3);
+	& > * {
+		animation: scale-appear 1s;
+	}
 	&.active {
-		backdrop-filter: blur(8px);
+		backdrop-filter: hue-rotate(48deg) blur(5px);
 	}
 	&__list {
 		display: flex;
