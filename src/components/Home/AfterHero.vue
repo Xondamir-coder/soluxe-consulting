@@ -7,11 +7,11 @@
 		<div class="after__images">
 			<img
 				alt="banners"
-				:width="isSmall ? 582 : 1280"
-				:height="isSmall ? 326 : 720"
+				width="2048"
+				height="1366"
 				v-for="(image, i) in images"
 				class="after__image"
-				:src="isSmall ? image.small : image.default"
+				:src="image"
 				:class="{ active: currentImageIndex === i }" />
 		</div>
 	</section>
@@ -51,30 +51,18 @@
 
 <script setup>
 import SectionLabel from '../SectionLabel.vue';
-import image1 from '@/images/after-1.webp';
-import image2 from '@/images/after-2.webp';
-import image1small from '@/images/after-1-small.webp';
-import image2small from '@/images/after-2-small.webp';
-import image3 from '@/images/after-3.webp';
-import image3small from '@/images/after-3-small.webp';
+import image1 from '@/images/after-1.avif';
+import image2 from '@/images/after-2.avif';
+import image3 from '@/images/after-3.avif';
+import image4 from '@/images/after-4.avif';
+import image5 from '@/images/after-5.avif';
+import image6 from '@/images/after-6.avif';
+import image7 from '@/images/after-7.avif';
 import { onMounted, ref } from 'vue';
 
 const intervalTime = 2; // seconds
 const isSmall = window.innerWidth < 768;
-const images = [
-	{
-		default: image1,
-		small: image1small
-	},
-	{
-		default: image2,
-		small: image2small
-	},
-	{
-		default: image3,
-		small: image3small
-	}
-];
+const images = [image1, image2, image3, image4, image5, image6, image7];
 const currentImageIndex = ref(0);
 
 onMounted(() => {
