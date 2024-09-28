@@ -3,7 +3,7 @@
 		<a href="#"><Logo class="header__logo" /></a>
 		<ul class="header__list">
 			<li class="header__item" v-for="{ link, name } in links" :key="link">
-				<a :href="link" class="header__link">
+				<a :href="link" class="header__link" @click.prevent="navigateToSection(link)">
 					{{ name }}
 				</a>
 			</li>
@@ -17,7 +17,7 @@
 	<div class="header__menu">
 		<ul class="header__list">
 			<li class="header__item" v-for="{ link, name } in links" :key="link">
-				<a :href="link" class="header__link" @click="isMenuToggled = false">
+				<a :href="link" class="header__link" @click.prevent="navigateToSection(link)">
 					{{ name }}
 				</a>
 			</li>
@@ -173,6 +173,13 @@ const scrollTrigger = {
 	start: '+=100',
 	end: '+=400',
 	scrub: 1
+};
+
+const navigateToSection = sectionId => {
+	isMenuToggled.value = false;
+	const section = document.querySelector(sectionId);
+	const top = section ? section.getBoundingClientRect().top + window.scrollY - 25 : 0;
+	window.scrollTo({ top, behavior: 'smooth' });
 };
 
 onMounted(() => {

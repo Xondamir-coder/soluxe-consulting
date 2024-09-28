@@ -1,4 +1,8 @@
 {
+	"required": "This field is required",
+	"email": "Invalid email address",
+	"phone": "Invalid phone number",
+
 	"link-about": "About ",
 	"link-services": "Services",
 	"link-work": "Our work",

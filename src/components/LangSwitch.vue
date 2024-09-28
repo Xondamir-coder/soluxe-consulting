@@ -3,7 +3,7 @@
 		<button class="lang" :aria-label="$t('aria-lang')" @click="toggleLang">
 			<Translate />
 			<p class="lang__text">
-				{{ locales.find(({ locale }) => locale === $i18n.locale).name }}
+				{{ locales.find(({ locale }) => locale === $i18n.locale)?.name }}
 			</p>
 			<ArrowDown class="lang__arrow" />
 			<input class="lang__input" type="checkbox" v-model="isLangToggled" />

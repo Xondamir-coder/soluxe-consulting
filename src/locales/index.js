@@ -3,7 +3,12 @@ import en from './en.json';
 import uz from './uz.json';
 import zh from './zh.json';
 
-const locale = localStorage.getItem('lang') || navigator.language.split('-')[0];
+const locales = ['en', 'uz', 'zh'];
+let locale = localStorage.getItem('lang') || navigator.language.split('-')[0];
+
+if (!locales.includes(locale)) {
+	locale = 'en';
+}
 
 export const i18n = createI18n({
 	locale,

@@ -2,7 +2,7 @@
 	<section class="about" id="about">
 		<SectionTop>{{ $t('link-about') }}</SectionTop>
 		<div class="about__content">
-			<span class="about__title">
+			<span class="about__title" id="about-title">
 				{{ $t('about-title-1') }}
 			</span>
 			<span class="about__title">

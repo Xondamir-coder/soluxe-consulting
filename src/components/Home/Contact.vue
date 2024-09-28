@@ -6,29 +6,38 @@
 		</div>
 		<div class="contact__right">
 			<form class="contact__form" @submit.prevent="submitForm">
-				<input
-					type="text"
-					class="contact__input"
-					v-model="data.name"
-					:placeholder="$t('placeholder-name')"
-					required />
-				<input
-					type="text"
-					class="contact__input"
-					v-model="data.title"
-					:placeholder="$t('placeholder-title')"
-					required />
-				<input
-					type="email"
-					class="contact__input"
-					v-model="data.email"
-					:placeholder="$t('placeholder-email')"
-					required />
-				<input
-					type="tel"
-					class="contact__input"
-					v-model="data.tel"
-					:placeholder="$t('placeholder-tel')" />
+				<div :data-text="$t('required')" class="contact__box">
+					<input
+						type="text"
+						class="contact__input"
+						v-model="data.name"
+						:placeholder="$t('placeholder-name')"
+						required />
+				</div>
+				<div :data-text="$t('required')" class="contact__box">
+					<input
+						type="text"
+						class="contact__input"
+						v-model="data.title"
+						:placeholder="$t('placeholder-title')"
+						required />
+				</div>
+				<div :data-text="$t('email')" class="contact__box">
+					<input
+						type="email"
+						class="contact__input"
+						v-model="data.email"
+						:placeholder="$t('placeholder-email')"
+						required />
+				</div>
+				<div :data-text="$t('phone')" class="contact__box">
+					<input
+						required
+						type="tel"
+						class="contact__input"
+						v-model="data.tel"
+						:placeholder="$t('placeholder-tel')" />
+				</div>
 				<button type="submit" class="contact__btn">{{ $t('send') }}</button>
 			</form>
 		</div>
@@ -62,7 +71,7 @@
 	&__btn {
 		background-color: var(--black);
 		color: #fff;
-		padding: 1rem;
+		padding: 0.7rem;
 		border-radius: 50px;
 		letter-spacing: 1px;
 		transition: transform 0.3s, box-shadow 0.3s;
@@ -71,13 +80,36 @@
 			box-shadow: 0 0 20px 0px var(--black);
 		}
 	}
+	&__box {
+		position: relative;
+		&:has(.contact__input:user-invalid)::after {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+	&__box::after {
+		opacity: 0;
+		transform: translateX(-10px);
+		transition: opacity 0.3s, transform 0.3s;
+		content: attr(data-text);
+		position: absolute;
+		font-size: 12px;
+		color: red;
+		top: calc(100% + 10px);
+		left: 0;
+	}
 	&__input {
+		width: 100%;
 		padding: 0;
 		outline: none;
 		border: none;
 		border-bottom: 1px solid var(--border-grey);
-		font-size: 0.9rem;
+		font-size: max(0.8rem, 14px);
 		background-color: transparent;
+		transition: border-color 0.3s;
+		&:user-invalid {
+			border-color: red;
+		}
 	}
 	&__right {
 		display: flex;
@@ -122,14 +154,14 @@ const submitForm = () => {
 };
 
 onMounted(() => {
-	gsap.from('.contact__input', {
+	gsap.from('.contact__box', {
 		opacity: 0,
 		y: -20,
 		stagger: 0.2,
 		scrollTrigger: {
 			trigger: '.contact',
 			start: 'top 85%',
-			end: 'bottom 65%',
+			end: 'center center',
 			scrub: 1
 		}
 	});
