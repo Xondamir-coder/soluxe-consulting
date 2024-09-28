@@ -30,6 +30,14 @@ import Titles from '@/components/Home/Titles.vue';
 import Contact from '@/components/Home/Contact.vue';
 import Footer from '@/components/Footer.vue';
 import Uzbekistan from '@/components/Home/Uzbekistan.vue';
+import Lenis from 'lenis';
+
+const lenis = new Lenis();
+function raf(time) {
+	lenis.raf(time);
+	requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
 </script>
 
 <style lang="scss" scoped>

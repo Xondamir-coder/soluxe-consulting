@@ -6,6 +6,7 @@
 		</div>
 		<div class="after__images">
 			<img
+				alt="banners"
 				:width="isSmall ? 582 : 1280"
 				:height="isSmall ? 326 : 720"
 				v-for="(image, i) in images"
