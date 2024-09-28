@@ -6,13 +6,11 @@
 		</div>
 		<div class="after__images">
 			<img
-				width="1440"
-				height="760"
-				alt="banner"
-				class="after__image"
+				:width="isSmall ? 582 : 1280"
+				:height="isSmall ? 326 : 720"
 				v-for="(image, i) in images"
-				:key="image"
-				:src="image"
+				class="after__image"
+				:src="isSmall ? image.small : image.default"
 				:class="{ active: currentImageIndex === i }" />
 		</div>
 	</section>
@@ -23,6 +21,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: max(1.5rem, 20px);
+	position: relative;
+	z-index: 10;
 	&__labels {
 		display: flex;
 		gap: 10px;
@@ -52,11 +52,28 @@
 import SectionLabel from '../SectionLabel.vue';
 import image1 from '@/images/after-1.webp';
 import image2 from '@/images/after-2.webp';
+import image1small from '@/images/after-1-small.webp';
+import image2small from '@/images/after-2-small.webp';
 import image3 from '@/images/after-3.webp';
+import image3small from '@/images/after-3-small.webp';
 import { onMounted, ref } from 'vue';
 
 const intervalTime = 2; // seconds
-const images = [image1, image2, image3];
+const isSmall = window.innerWidth < 768;
+const images = [
+	{
+		default: image1,
+		small: image1small
+	},
+	{
+		default: image2,
+		small: image2small
+	},
+	{
+		default: image3,
+		small: image3small
+	}
+];
 const currentImageIndex = ref(0);
 
 onMounted(() => {

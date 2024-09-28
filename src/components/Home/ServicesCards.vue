@@ -16,11 +16,11 @@
 <script setup>
 import Cards from '../Cards.vue';
 import { computed } from 'vue';
-import servicesImg1 from '@/images/services-1.jpg';
-import servicesImg2 from '@/images/services-2.jpg';
-import servicesImg3 from '@/images/services-3.jpg';
-import servicesImg4 from '@/images/services-4.jpg';
-import servicesImg5 from '@/images/services-5.jpg';
+import servicesImg1 from '@/images/services-1.avif';
+import servicesImg2 from '@/images/services-2.avif';
+import servicesImg3 from '@/images/services-3.avif';
+import servicesImg4 from '@/images/services-4.avif';
+import servicesImg5 from '@/images/services-5.avif';
 import { i18n } from '@/locales';
 
 const cards = computed(() => [
