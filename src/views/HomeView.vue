@@ -5,13 +5,13 @@
 		<AfterHero />
 		<About />
 		<Services />
-		<Cards />
+		<ServicesCards />
 		<Approach />
 		<Industries />
+		<Uzbekistan />
 		<Sectors />
 		<Titles />
 		<Contact />
-		<Cta />
 		<Footer />
 	</main>
 </template>
@@ -22,14 +22,14 @@ import About from '@/components/Home/About.vue';
 import Hero from '@/components/Home/Hero.vue';
 import AfterHero from '@/components/Home/AfterHero.vue';
 import Services from '@/components/Home/Services.vue';
-import Cards from '@/components/Home/Cards.vue';
+import ServicesCards from '@/components/Home/ServicesCards.vue';
 import Approach from '@/components/Home/Approach.vue';
 import Industries from '@/components/Home/Industries.vue';
 import Sectors from '@/components/Home/Sectors.vue';
 import Titles from '@/components/Home/Titles.vue';
 import Contact from '@/components/Home/Contact.vue';
-import Cta from '@/components/Home/Cta.vue';
 import Footer from '@/components/Footer.vue';
+import Uzbekistan from '@/components/Home/Uzbekistan.vue';
 </script>
 
 <style lang="scss" scoped>

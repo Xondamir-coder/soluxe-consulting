@@ -74,6 +74,16 @@
 	"title-1": "the best frontend",
 	"title-2": "developer i am",
 
+	"uzb-label-1": "Market",
+	"uzb-label-2": "Economy",
+	"uzb-label-3": "Government",
+	"uzb-name-1": "Market potential overview",
+	"uzb-name-2": "Economic indicators",
+	"uzb-name-3": "Government incentives and policies",
+	"uzb-text-1": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+	"uzb-text-2": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+	"uzb-text-3": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+
 	"contact-title": "thank you for your interest in consulting soluxe! please fill out our form here and a team member will be in touch",
 	"placeholder-name": "Name",
 	"placeholder-email": "Email",
@@ -90,5 +100,6 @@
 	"linkedin": "LinkedIn",
 	"facebook": "Facebook",
 	"tiktok": "TikTok",
-	"privacy": "Privacy Policy"
+	"privacy": "Privacy Policy",
+	"address": "6/1, Afrosiyob street, Mirabad district, Tashkent city, Republic of Uzbekistan"
 }

@@ -20,7 +20,7 @@
 // slide-appear from top
 @keyframes slide-appear {
 	0% {
-		transform: translateY(-50px);
+		transform: translateY(30px);
 		opacity: 0;
 	}
 	100% {
@@ -38,7 +38,7 @@
 	& > * {
 		animation: slide-appear 1s both;
 		&:nth-of-type(2) {
-			animation-delay: 0.4s;
+			animation-delay: 0.8s;
 		}
 	}
 	@media only screen and (max-width: 768px) {
@@ -48,7 +48,7 @@
 		animation: rotate 2s;
 	}
 	&__box {
-		animation-delay: 0.8s;
+		animation-delay: 1.2s;
 		display: flex;
 		align-items: start;
 		gap: max(1vw, 10px);

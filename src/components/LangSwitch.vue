@@ -3,7 +3,7 @@
 		<button class="lang" :aria-label="$t('aria-lang')" @click="toggleLang">
 			<Translate />
 			<p class="lang__text">
-				{{ $i18n.locale == 'zh' ? '中文' : $i18n.locale }}
+				{{ locales.find(({ locale }) => locale === $i18n.locale).name }}
 			</p>
 			<ArrowDown class="lang__arrow" />
 			<input class="lang__input" type="checkbox" v-model="isLangToggled" />
@@ -11,13 +11,13 @@
 		<ul class="lang__options" :class="{ hidden: !isLangToggled }">
 			<li
 				class="lang__options-item"
-				v-for="locale in $i18n.availableLocales.filter(locale => locale !== $i18n.locale)"
+				v-for="{ locale, name } in locales.filter(({ locale }) => locale !== $i18n.locale)"
 				:key="locale">
 				<button
 					class="lang__options-btn"
 					:aria-label="$t('aria-lang')"
 					@click="selectLang(locale)">
-					<p class="lang__options-text">{{ locale == 'zh' ? '中文' : locale }}</p>
+					<p class="lang__options-text">{{ name }}</p>
 				</button>
 			</li>
 		</ul>
@@ -26,11 +26,13 @@
 
 <style scoped lang="scss">
 .lang {
+	width: 100%;
 	display: flex;
 	align-items: center;
 	gap: 12px;
 	padding: 15px 26px;
 	border-radius: 100px;
+	justify-content: space-between;
 
 	&:has(.lang__input:checked) .lang__arrow {
 		transform: rotate(180deg);
@@ -90,6 +92,11 @@ import { changeLang } from '@/locales';
 
 const isLangToggled = ref(false);
 
+const locales = [
+	{ locale: 'en', name: 'En' },
+	{ locale: 'uz', name: 'Oʻzb' },
+	{ locale: 'zh', name: '中文' }
+];
 const toggleLang = () => (isLangToggled.value = !isLangToggled.value);
 const selectLang = newLocale => {
 	changeLang(newLocale);

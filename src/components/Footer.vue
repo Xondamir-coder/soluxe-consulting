@@ -8,15 +8,16 @@
 			<li class="footer__item">
 				<h3 class="footer__item-title">{{ $t('contact') }}</h3>
 				<div class="footer__divider"></div>
-				<a href="mailto:info@consulting.soluxe" class="footer__link">
-					info@consulting.soluxe
+				<a href="mailto:consulting@soluxe.uz" class="footer__link">
+					consulting@soluxe.uz
 				</a>
-				<a href="tel:+999 99 999 99 99" class="footer__link">+999 99 999 99 99</a>
+				<a href="tel:+998 93 384 02 72" class="footer__link">+998 (93) 384-02-72</a>
+				<a href="tel:+86 186 9911 3737" class="footer__link">+86 186 9911 3737</a>
 			</li>
 			<li class="footer__item">
 				<h3 class="footer__item-title">{{ $t('find-us') }}</h3>
 				<div class="footer__divider"></div>
-				<p>Tashkent Uzbekistan</p>
+				<p class="footer__address" v-for="text in $t('address').split(',')">{{ text }}</p>
 			</li>
 			<li class="footer__item">
 				<h3 class="footer__item-title">{{ $t('legals') }}</h3>
@@ -44,7 +45,6 @@
 	gap: 30px;
 	&__border {
 		margin-inline: auto;
-		width: 80%;
 		height: 1px;
 		background-color: var(--border-grey);
 		@media screen and (max-width: 768px) {
@@ -85,9 +85,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		font-size: 18px;
+		font-size: 16px;
 		&-title {
-			font-size: 22px;
+			font-size: 20px;
 			color: rgba(192, 192, 192, 1);
 			font-weight: 400;
 		}
@@ -129,6 +129,13 @@ onMounted(() => {
 		opacity: 0,
 		duration: 1,
 		stagger: 0.3,
+		scrollTrigger: {
+			trigger: '.footer',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.to('.footer__border', {
+		width: '100%',
 		scrollTrigger: {
 			trigger: '.footer',
 			toggleActions: 'play none none reverse'
