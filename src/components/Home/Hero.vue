@@ -12,7 +12,7 @@
 			</span>
 			<Ornament class="hero__ornament" />
 		</div>
-		<Circle ref="circleRef" class="hero__circle" />
+		<Circle ref="circleRef" class="hero__circle" id="hero-circle" />
 	</section>
 </template>
 
@@ -22,17 +22,14 @@ import Circle from '../Circle.vue';
 import gsap from 'gsap';
 import { onMounted, ref } from 'vue';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import MotionPathPlugin from 'gsap/MotionPathPlugin';
+import { lenis } from '@/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(MotionPathPlugin);
 const circleRef = ref();
 
 onMounted(() => {
-	// const el2 = document.getElementById('about-title');
-
-	// const offsetX = rect2.left - rect1.left;
-	// const offsetY = rect2.top - rect1.top;
-	// console.log(offsetY);
-
 	gsap.to('.hero__ornament', {
 		rotate: 180,
 		scrollTrigger: {
@@ -41,19 +38,73 @@ onMounted(() => {
 			scrub: 1
 		}
 	});
-	// gsap.to('.hero__circle', {
-	// 	top: () => el2.getBoundingClientRect().top + window.scrollY, // Move element1 vertically to element2's top position
-	// 	left: () => el2.getBoundingClientRect().left,
-	// 	width: 100,
-	// 	height: 100,
-	// 	scrollTrigger: {
-	// 		trigger: '.hero',
-	// 		start: 'center center',
-	// 		endTrigger: '.after',
-	// 		scrub: 1,
-	// 		markers: true
-	// 	}
-	// });
+
+	// changing color and size
+	gsap.to('#hero-circle', {
+		width: 100,
+		height: 100,
+		filter: 'blur(0px)',
+		scrollTrigger: {
+			trigger: '.hero',
+			endTrigger: '.about',
+			start: 'center center',
+			end: 'top center',
+			scrub: 1
+		}
+	});
+
+	// pulsating effect forever
+	gsap.to('#hero-circle', {
+		ease: 'none',
+		yoyo: true,
+		duration: 2,
+		repeat: -1,
+		scale: 1.5
+	});
+
+	// move till cards
+	// Create a timeline
+	let tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: '.hero',
+			endTrigger: '.services__cards',
+			start: 'center center',
+			end: 'top 40%',
+			scrub: 1
+		}
+	});
+
+	// First part: animate from the start to 20vw
+	tl.to('#hero-circle', {
+		motionPath: {
+			path: [{ x: '45vw' }, { x: '20vw' }],
+			autoRotate: false
+		},
+		ease: 'power1'
+	});
+
+	// Second part: resume from 20vw to -45vw
+	tl.to(
+		'#hero-circle',
+		{
+			width: 200,
+			height: 200,
+			opacity: 0,
+			motionPath: {
+				path: [{ x: '-45vw' }],
+				autoRotate: false
+			},
+			ease: 'power1'
+		},
+		'+=.3'
+	);
+
+	// constant y-axis movement
+	lenis.on('scroll', e => {
+		gsap.to('#hero-circle', {
+			y: scrollY
+		});
+	});
 });
 </script>
 

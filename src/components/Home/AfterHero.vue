@@ -11,7 +11,7 @@
 				v-for="(image, i) in images"
 				:width="imageWidth"
 				:height="imageHeight"
-				v-lazy="image"
+				:src="image"
 				:class="{ active: currentImageIndex === i }" />
 		</div>
 	</section>
@@ -36,7 +36,7 @@
 	}
 	&__image {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		border-radius: 30px;
 		object-fit: cover;
 		opacity: 0;
@@ -72,7 +72,6 @@ import mediumImage4 from '@/images/after-4-medium.avif';
 import mediumImage5 from '@/images/after-5-medium.avif';
 import mediumImage6 from '@/images/after-6-medium.avif';
 import mediumImage7 from '@/images/after-7-medium.avif';
-
 import { onMounted, ref } from 'vue';
 
 const intervalTime = 2; // seconds

@@ -67,7 +67,7 @@
 		transform: translateX(100%);
 	}
 	&__menu {
-		transition: transform 0.3s;
+		transition: transform 1s;
 		position: fixed;
 		z-index: 50;
 		top: 50px;
