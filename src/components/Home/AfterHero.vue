@@ -76,8 +76,8 @@ import mediumImage7 from '/images/after-7-medium.avif';
 import { onMounted, ref } from 'vue';
 
 const intervalTime = 2; // seconds
-const isSmall = window.innerWidth < 600;
-const isMedium = window.innerWidth >= 600 && window.innerWidth < 1280;
+const isSmall = window.innerWidth <= 600;
+const isMedium = window.innerWidth > 600 && window.innerWidth <= 1280;
 const imageWidth = isSmall ? 512 : isMedium ? 1024 : 2048;
 const imageHeight = isSmall ? 288 : isMedium ? 576 : 1152;
 const images = isSmall
