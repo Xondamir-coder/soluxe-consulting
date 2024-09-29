@@ -1,5 +1,5 @@
 <template>
-	<section class="about" id="about">
+	<section class="about" id="about" ref="aboutRef">
 		<SectionTop>{{ $t('link-about') }}</SectionTop>
 		<div class="about__content">
 			<span class="about__title" id="about-title">
@@ -20,13 +20,25 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import Ornament from '../Ornament.vue';
 import SectionTop from '../SectionTop.vue';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+const observer = new IntersectionObserver(entries => {
+	entries.forEach(entry => {
+		if (entry.isIntersecting && !entry.target.dataset.triggered) {
+			ScrollTrigger.refresh();
+			entry.target.dataset.triggered = 'true';
+		}
+	});
+});
+
+const aboutRef = ref();
 onMounted(() => {
 	const els = Array.from(document.querySelector('.about__content').children);
+	observer.observe(aboutRef.value);
 	els.forEach(el => {
 		gsap.from(el, {
 			opacity: 0,

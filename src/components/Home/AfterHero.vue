@@ -7,11 +7,11 @@
 		<div class="after__images">
 			<img
 				alt="banners"
+				class="after__image"
+				v-for="(image, i) in images"
 				:width="imageWidth"
 				:height="imageHeight"
-				v-for="(image, i) in images"
-				class="after__image"
-				:src="image"
+				v-lazy="image"
 				:class="{ active: currentImageIndex === i }" />
 		</div>
 	</section>
@@ -51,27 +51,27 @@
 
 <script setup>
 import SectionLabel from '../SectionLabel.vue';
-import image1 from '/images/after-1.avif';
-import image2 from '/images/after-2.avif';
-import image3 from '/images/after-3.avif';
-import image4 from '/images/after-4.avif';
-import image5 from '/images/after-5.avif';
-import image6 from '/images/after-6.avif';
-import image7 from '/images/after-7.avif';
-import smallImage1 from '/images/after-1-small.avif';
-import smallImage2 from '/images/after-2-small.avif';
-import smallImage3 from '/images/after-3-small.avif';
-import smallImage4 from '/images/after-4-small.avif';
-import smallImage5 from '/images/after-5-small.avif';
-import smallImage6 from '/images/after-6-small.avif';
-import smallImage7 from '/images/after-7-small.avif';
-import mediumImage1 from '/images/after-1-medium.avif';
-import mediumImage2 from '/images/after-2-medium.avif';
-import mediumImage3 from '/images/after-3-medium.avif';
-import mediumImage4 from '/images/after-4-medium.avif';
-import mediumImage5 from '/images/after-5-medium.avif';
-import mediumImage6 from '/images/after-6-medium.avif';
-import mediumImage7 from '/images/after-7-medium.avif';
+import image1 from '@/images/after-1.avif';
+import image2 from '@/images/after-2.avif';
+import image3 from '@/images/after-3.avif';
+import image4 from '@/images/after-4.avif';
+import image5 from '@/images/after-5.avif';
+import image6 from '@/images/after-6.avif';
+import image7 from '@/images/after-7.avif';
+import smallImage1 from '@/images/after-1-small.avif';
+import smallImage2 from '@/images/after-2-small.avif';
+import smallImage3 from '@/images/after-3-small.avif';
+import smallImage4 from '@/images/after-4-small.avif';
+import smallImage5 from '@/images/after-5-small.avif';
+import smallImage6 from '@/images/after-6-small.avif';
+import smallImage7 from '@/images/after-7-small.avif';
+import mediumImage1 from '@/images/after-1-medium.avif';
+import mediumImage2 from '@/images/after-2-medium.avif';
+import mediumImage3 from '@/images/after-3-medium.avif';
+import mediumImage4 from '@/images/after-4-medium.avif';
+import mediumImage5 from '@/images/after-5-medium.avif';
+import mediumImage6 from '@/images/after-6-medium.avif';
+import mediumImage7 from '@/images/after-7-medium.avif';
 
 import { onMounted, ref } from 'vue';
 
