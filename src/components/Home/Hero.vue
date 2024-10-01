@@ -23,7 +23,6 @@ import gsap from 'gsap';
 import { onMounted, ref } from 'vue';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
-import { lenis } from '@/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
@@ -55,29 +54,39 @@ onMounted(() => {
 
 	// pulsating effect forever
 	gsap.to('#hero-circle', {
+		scale: 1.5,
 		ease: 'none',
 		yoyo: true,
 		duration: 2,
-		repeat: -1,
-		scale: 1.5
+		repeat: -1
 	});
+
+	const afterHeight = document.querySelector('.after').scrollHeight;
+	const aboutHeight = document.querySelector('.about').scrollHeight;
+	const servicesHeight = document.querySelector('.services').scrollHeight;
+	const circleHeight = document.querySelector('#hero-circle').scrollHeight;
 
 	// move till cards
 	// Create a timeline
 	let tl = gsap.timeline({
 		scrollTrigger: {
 			trigger: '.hero',
-			endTrigger: '.services__cards',
+			endTrigger: '.services',
 			start: 'center center',
-			end: 'top 40%',
+			end: 'bottom center',
 			scrub: 1
 		}
 	});
 
+	const afterPart = afterHeight + circleHeight;
+
 	// First part: animate from the start to 20vw
 	tl.to('#hero-circle', {
 		motionPath: {
-			path: [{ x: '45vw' }, { x: '20vw' }],
+			path: [
+				{ x: '30vw', y: afterHeight / 2 },
+				{ x: '20vw', y: afterPart }
+			],
 			autoRotate: false
 		},
 		ease: 'power1'
@@ -89,22 +98,26 @@ onMounted(() => {
 		{
 			width: 200,
 			height: 200,
-			opacity: 0,
 			motionPath: {
-				path: [{ x: '-45vw' }],
+				path: [
+					{ x: '-25vw', y: afterPart + aboutHeight / 2 },
+					{
+						x: '-45vw',
+						y: afterPart + aboutHeight / 2 + servicesHeight
+					}
+				],
 				autoRotate: false
 			},
 			ease: 'power1'
 		},
 		'+=.3'
 	);
-
 	// constant y-axis movement
-	lenis.on('scroll', e => {
-		gsap.to('#hero-circle', {
-			y: scrollY
-		});
-	});
+	// lenis.on('scroll', e => {
+	// 	gsap.to('#hero-circle', {
+	// 		y: scrollY
+	// 	});
+	// });
 });
 </script>
 

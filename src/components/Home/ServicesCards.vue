@@ -1,10 +1,23 @@
 <template>
 	<section class="services__cards">
-		<Cards :cards="cards" />
+		<Cards :cards="cards">
+			<Circle id="cards-circle" class="services__circle" />
+		</Cards>
 	</section>
 </template>
 
 <style lang="scss" scoped>
+.services__circle {
+	position: absolute;
+	top: 10%;
+	width: 50px;
+	height: 50px;
+	filter: blur(0);
+	// always last column and last row
+	grid-column: 3 / 4;
+	grid-row: 2/3;
+	justify-self: center;
+}
 .services__cards {
 	margin-top: 5rem;
 	display: flex;
@@ -15,13 +28,19 @@
 
 <script setup>
 import Cards from '../Cards.vue';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import servicesImg1 from '@/images/services-1.avif';
 import servicesImg2 from '@/images/services-2.avif';
 import servicesImg3 from '@/images/services-3.avif';
 import servicesImg4 from '@/images/services-4.avif';
 import servicesImg5 from '@/images/services-5.avif';
 import { i18n } from '@/locales';
+import Circle from '../Circle.vue';
+import gsap from 'gsap';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 const cards = computed(() => [
 	{
@@ -55,4 +74,48 @@ const cards = computed(() => [
 		text: i18n.global.t('cards-text-5')
 	}
 ]);
+
+onMounted(() => {
+	gsap.from('#cards-circle', {
+		opacity: 0,
+		duration: 1,
+		scrollTrigger: {
+			toggleActions: 'play none none reverse',
+			trigger: '.services__cards',
+			start: 'center center'
+		}
+	});
+	gsap.to('#cards-circle', {
+		scale: 1.5,
+		ease: 'none',
+		yoyo: true,
+		duration: 2,
+		repeat: -1
+	});
+
+	const cardHeight = document.querySelector('.card').scrollHeight;
+	const approachMarginTop = document
+		.querySelector('.approach')
+		.computedStyleMap()
+		.get('margin-top').value;
+	const approachCircleHeight = document.querySelector('.approach__circle').scrollHeight;
+	const finalY = approachMarginTop + cardHeight + approachCircleHeight / 2;
+	gsap.to('#cards-circle', {
+		scrollTrigger: {
+			trigger: '.services__cards',
+			endTrigger: '.approach',
+			start: 'center 30%',
+			end: 'top top',
+			scrub: 1
+		},
+		motionPath: {
+			path: [
+				{ x: '10vw', y: finalY / 2 },
+				{ x: '-30vw', y: finalY / 1.5 },
+				{ x: '-55vw', y: finalY }
+			],
+			autoRotate: false
+		}
+	});
+});
 </script>
