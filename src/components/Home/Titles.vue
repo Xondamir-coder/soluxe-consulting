@@ -1,5 +1,5 @@
 <template>
-	<section class="container">
+	<section class="container" id="titles">
 		<h1 class="title" v-for="i in 2" :key="i">{{ $t(`title-${i}`) }}</h1>
 	</section>
 </template>

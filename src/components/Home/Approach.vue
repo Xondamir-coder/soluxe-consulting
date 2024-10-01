@@ -5,11 +5,13 @@
 				{{ $t(`approach-title-${i}`) }}
 			</span>
 		</div>
-		<Circle class="approach__circle" />
+		<Circle id="approach-circle" class="approach__circle" />
 	</section>
 </template>
 
 <style lang="scss" scoped>
+#approach-circle {
+}
 .approach {
 	margin-top: 10rem;
 	padding: 10vw;
@@ -20,7 +22,7 @@
 	align-content: center;
 	justify-content: end;
 	min-height: 100vh;
-	position: relative;
+	// position: relative;
 	background-color: rgba(255, 255, 255, 0.3);
 	@media only screen and (max-width: 768px) {
 		min-height: 50vh;
@@ -62,8 +64,21 @@
 import gsap from 'gsap';
 import Circle from '../Circle.vue';
 import { onMounted } from 'vue';
+import { ScrollTrigger } from 'gsap/all';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Helper function to calculate height including margins
+const getHeightWithMargins = element => {
+	const style = window.getComputedStyle(element);
+	const height = element.offsetHeight;
+	const marginTop = parseFloat(style.marginTop);
+	const marginBottom = parseFloat(style.marginBottom);
+	return height + marginTop + marginBottom;
+};
 
 onMounted(() => {
+	// GSAP animation for approach content
 	gsap.from(Array.from(document.querySelector('.approach__content').children), {
 		opacity: 0,
 		x: -30,
@@ -74,6 +89,75 @@ onMounted(() => {
 			trigger: '.approach__content',
 			start: 'top 80%',
 			end: 'bottom 35%',
+			scrub: 1
+		}
+	});
+
+	// Circle size adjustment and blur removal
+	gsap.to('#approach-circle', {
+		filter: 'blur(0px)',
+		width: '10rem',
+		height: '10rem',
+		scrollTrigger: {
+			trigger: '#approach-circle',
+			start: 'top top',
+			scrub: 1
+		}
+	});
+
+	// Retrieve heights and margin
+	const approachHeight = getHeightWithMargins(document.querySelector('.approach'));
+	const industriesHeight = getHeightWithMargins(document.querySelector('.industries'));
+	const uzbHeight = getHeightWithMargins(document.querySelector('.uzb'));
+	const sectorsHeight = document.querySelector('.sectors').scrollHeight;
+
+	// Calculate margin for contact section
+	const contactMargin = parseFloat(
+		window.getComputedStyle(document.querySelector('.contact')).marginTop
+	);
+
+	// Define key motion points for the circle
+	const motionPathPoints = [
+		{ x: '70vw', y: approachHeight },
+		{ x: '50vw', y: approachHeight + industriesHeight - 200 },
+		{ x: '30vw', y: approachHeight + industriesHeight },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight - 300 },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight - 150 },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 400 },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 300 },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 200 },
+		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 100 },
+		{
+			x: '20vw',
+			y: approachHeight + industriesHeight + uzbHeight + sectorsHeight + contactMargin
+		}
+	];
+
+	// GSAP motion path animation for the circle
+	gsap.to('#approach-circle', {
+		ease: 'none',
+		rotate: 360,
+
+		motionPath: {
+			path: motionPathPoints
+		},
+		scrollTrigger: {
+			trigger: '.approach',
+			endTrigger: '.contact',
+			start: 'top center',
+			end: 'top center',
+			scrub: 1
+		}
+	});
+	gsap.to('#approach-circle', {
+		borderRadius: 0,
+		clipPath:
+			'polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)',
+		scrollTrigger: {
+			trigger: '.sectors',
+			start: 'top bottom',
+			end: 'center 80%',
 			scrub: 1
 		}
 	});

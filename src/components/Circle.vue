@@ -5,7 +5,7 @@
 <style scoped>
 .circle {
 	background-color: var(--yellow);
-	border-radius: 50%;
 	filter: blur(100px);
+	border-radius: 50%;
 }
 </style>
