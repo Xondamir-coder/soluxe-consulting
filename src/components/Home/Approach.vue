@@ -137,8 +137,6 @@ onMounted(() => {
 	// GSAP motion path animation for the circle
 	gsap.to('#approach-circle', {
 		ease: 'none',
-		rotate: 360,
-
 		motionPath: {
 			path: motionPathPoints
 		},
@@ -152,14 +150,27 @@ onMounted(() => {
 	});
 	gsap.to('#approach-circle', {
 		borderRadius: 0,
-		clipPath:
-			'polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)',
+		clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
 		scrollTrigger: {
 			trigger: '.sectors',
 			start: 'top bottom',
 			end: 'center 80%',
 			scrub: 1
 		}
+	});
+	gsap.to('#approach-circle', {
+		scale: 0.8,
+		ease: 'none',
+		yoyo: true,
+		duration: 2,
+		repeat: -1
+	});
+	gsap.to('#approach-circle', {
+		rotate: 360,
+		ease: 'none',
+		yoyo: true,
+		duration: 20,
+		repeat: -1
 	});
 });
 </script>

@@ -133,6 +133,11 @@ onMounted(() => {
 		opacity: 1;
 	}
 }
+body:not(:has(.preloader.shown)) {
+	.hero > *:not(.hero__circle) {
+		animation-play-state: running;
+	}
+}
 .hero {
 	display: flex;
 	flex-direction: column;
@@ -142,6 +147,7 @@ onMounted(() => {
 	position: relative;
 	& > *:not(.hero__circle) {
 		animation: slide-appear 1s both;
+		animation-play-state: paused;
 		z-index: 2;
 	}
 	@media only screen and (max-width: 768px) {

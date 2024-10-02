@@ -1,5 +1,6 @@
 <template>
 	<main class="main">
+		<Preloader />
 		<Header />
 		<Hero />
 		<AfterHero />
@@ -31,6 +32,7 @@ import Contact from '@/components/Home/Contact.vue';
 import Footer from '@/components/Footer.vue';
 import Uzbekistan from '@/components/Home/Uzbekistan.vue';
 import '@/lenis';
+import Preloader from '@/components/Preloader.vue';
 </script>
 
 <style lang="scss" scoped>

@@ -36,6 +36,9 @@ body {
 	font-family: var(--font-castoro);
 	color: var(--black);
 }
+body:has(.preloader.shown) {
+	overflow: hidden;
+}
 a {
 	text-decoration: none;
 	color: inherit;

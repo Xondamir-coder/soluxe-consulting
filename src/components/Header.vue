@@ -37,11 +37,14 @@
 		opacity: 1;
 	}
 }
+body:not(:has(.preloader.shown)) .header > * {
+	animation-play-state: running;
+}
 .header {
 	display: grid;
 	align-items: center;
 	grid-template-columns: max-content 1fr 150px;
-	padding: 8px 0.8rem;
+	padding: 8px 3vw;
 	position: fixed;
 	z-index: 100;
 	top: 0;
@@ -58,7 +61,7 @@
 		justify-content: space-between;
 	}
 	& > * {
-		animation: scale-appear 1s;
+		animation: scale-appear 1s paused;
 	}
 	&.active {
 		backdrop-filter: hue-rotate(48deg) blur(5px);
