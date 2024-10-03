@@ -144,8 +144,7 @@ onMounted(() => {
 			endTrigger: '.contact',
 			start: 'top center',
 			end: 'bottom center',
-			scrub: 1,
-			markers: true
+			scrub: 1
 		}
 	});
 	gsap.to('#approach-circle', {
