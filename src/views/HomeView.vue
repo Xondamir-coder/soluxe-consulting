@@ -1,6 +1,6 @@
 <template>
 	<main class="main">
-		<Preloader />
+		<!-- <Preloader /> -->
 		<Header />
 		<Hero />
 		<AfterHero />
@@ -9,8 +9,8 @@
 		<ServicesCards />
 		<Approach />
 		<Industries />
-		<Uzbekistan />
 		<Sectors />
+		<Uzbekistan />
 		<Titles />
 		<Contact />
 		<Footer />

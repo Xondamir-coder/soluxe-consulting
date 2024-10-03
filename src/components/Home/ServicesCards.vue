@@ -76,15 +76,6 @@ const cards = computed(() => [
 ]);
 
 onMounted(() => {
-	gsap.from('#cards-circle', {
-		opacity: 0,
-		duration: 1,
-		scrollTrigger: {
-			toggleActions: 'play none none reverse',
-			trigger: '.services__cards',
-			start: 'center center'
-		}
-	});
 	gsap.to('#cards-circle', {
 		scale: 1.5,
 		ease: 'none',

@@ -10,8 +10,6 @@
 </template>
 
 <style lang="scss" scoped>
-#approach-circle {
-}
 .approach {
 	margin-top: 10rem;
 	padding: 10vw;
@@ -22,8 +20,9 @@
 	align-content: center;
 	justify-content: end;
 	min-height: 100vh;
+	// z-index: 10;
 	// position: relative;
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 1);
 	@media only screen and (max-width: 768px) {
 		min-height: 50vh;
 		padding: 5vw;
@@ -118,16 +117,16 @@ onMounted(() => {
 
 	// Define key motion points for the circle
 	const motionPathPoints = [
-		{ x: '70vw', y: approachHeight },
-		{ x: '50vw', y: approachHeight + industriesHeight - 200 },
-		{ x: '30vw', y: approachHeight + industriesHeight },
+		{ x: '25vw', y: approachHeight },
+		{ x: '10vw', y: approachHeight + industriesHeight - 200 },
+		{ x: '5vw', y: approachHeight + industriesHeight },
 		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight - 300 },
 		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight - 150 },
-		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight },
-		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 400 },
-		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 300 },
-		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 200 },
-		{ x: '5vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 100 },
+		{ x: '25vw', y: approachHeight + industriesHeight + uzbHeight },
+		{ x: '35vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 400 },
+		{ x: '45vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 300 },
+		{ x: '40vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 200 },
+		{ x: '25vw', y: approachHeight + industriesHeight + uzbHeight + sectorsHeight - 100 },
 		{
 			x: '20vw',
 			y: approachHeight + industriesHeight + uzbHeight + sectorsHeight + contactMargin
@@ -144,18 +143,9 @@ onMounted(() => {
 			trigger: '.approach',
 			endTrigger: '.contact',
 			start: 'top center',
-			end: 'top center',
-			scrub: 1
-		}
-	});
-	gsap.to('#approach-circle', {
-		borderRadius: 0,
-		clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-		scrollTrigger: {
-			trigger: '.sectors',
-			start: 'top bottom',
-			end: 'center 80%',
-			scrub: 1
+			end: 'bottom center',
+			scrub: 1,
+			markers: true
 		}
 	});
 	gsap.to('#approach-circle', {
