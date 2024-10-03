@@ -11,7 +11,7 @@
 				v-for="(image, i) in images"
 				:width="imageWidth"
 				:height="imageHeight"
-				v-lazy="image"
+				:src="image"
 				:class="{ active: currentImageIndex === i }" />
 		</div>
 	</section>
