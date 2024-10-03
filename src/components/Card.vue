@@ -94,7 +94,7 @@ onMounted(() => {
 		}
 	}
 	&__text {
-		font-size: 0.8rem;
+		font-size: max(0.8rem, 14px);
 		font-family: var(--font-cambay);
 		line-height: 1.4;
 		color: rgb(0, 0, 0, 0.7);
@@ -109,7 +109,7 @@ onMounted(() => {
 		border: inherit;
 		align-self: flex-start;
 		padding: 4px 1.3rem;
-		font-size: 0.8rem;
+		font-size: max(0.8rem, 12px);
 		color: rgb(0, 0, 0, 0.6);
 		@include hidden;
 	}
