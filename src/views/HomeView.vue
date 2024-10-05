@@ -1,6 +1,6 @@
 <template>
 	<main class="main">
-		<!-- <Preloader /> -->
+		<Preloader />
 		<Header />
 		<Hero />
 		<AfterHero />
