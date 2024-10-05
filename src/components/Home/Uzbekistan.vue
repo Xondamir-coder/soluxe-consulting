@@ -10,7 +10,7 @@ import { computed } from 'vue';
 import Cards from '../Cards.vue';
 import SectionTop from '../SectionTop.vue';
 import { i18n } from '@/locales';
-import servicesImg1 from '@/images/services-1.avif';
+import servicesImg1 from '@/images/services-1.webp';
 
 const cards = computed(() => [
 	{

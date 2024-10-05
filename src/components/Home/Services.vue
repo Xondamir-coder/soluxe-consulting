@@ -82,9 +82,7 @@ onMounted(() => {
 		line-height: 1;
 		font-size: clamp(38px, 10vw, 130px);
 		text-transform: uppercase;
-		&:not(:has(+ .services__ornament)) {
-			align-self: end;
-		}
+		text-align: center;
 		&:not(:has(+ .services__ornament)):last-of-type {
 			align-self: center;
 		}

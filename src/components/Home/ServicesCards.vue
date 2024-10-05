@@ -29,11 +29,11 @@
 <script setup>
 import Cards from '../Cards.vue';
 import { computed, onMounted } from 'vue';
-import servicesImg1 from '@/images/services-1.avif';
-import servicesImg2 from '@/images/services-2.avif';
-import servicesImg3 from '@/images/services-3.avif';
-import servicesImg4 from '@/images/services-4.avif';
-import servicesImg5 from '@/images/services-5.avif';
+import servicesImg1 from '@/images/services-1.webp';
+import servicesImg2 from '@/images/services-2.webp';
+import servicesImg3 from '@/images/services-3.webp';
+import servicesImg4 from '@/images/services-4.webp';
+import servicesImg5 from '@/images/services-5.webp';
 import { i18n } from '@/locales';
 import Circle from '../Circle.vue';
 import gsap from 'gsap';
