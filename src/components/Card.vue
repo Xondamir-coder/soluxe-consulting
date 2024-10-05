@@ -1,6 +1,5 @@
 <template>
 	<div class="card" ref="cardRef">
-		<div class="card__number">{{ card.i + 1 }}</div>
 		<img width="400" height="400" :src="card.img" :alt="card.name" class="card__image" />
 		<div class="card__label">
 			<span class="card__label-text">{{ card.label }}</span>
@@ -53,10 +52,11 @@ onMounted(() => {
 	height: 100%;
 	padding: max(2vw, 20px);
 	border: 1px solid var(--border-grey);
-	border-radius: 20px;
-	display: grid;
-	justify-items: start;
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
 	gap: 1rem;
+
 	@media only screen and (min-width: 768px) {
 		&:hover > * {
 			@include shown;
@@ -69,20 +69,9 @@ onMounted(() => {
 	}
 	&__image {
 		width: 100%;
-		height: auto;
 		object-fit: cover;
+		border-radius: inherit;
 		@include hidden;
-	}
-	&__number {
-		margin-bottom: 10px;
-		font-family: var(--font-cambay);
-		background-color: var(--black);
-		border-radius: 50%;
-		width: 50px;
-		height: 50px;
-		display: grid;
-		place-content: center;
-		color: #fff;
 	}
 	&__container {
 		@media only screen and (min-width: 768px) {
