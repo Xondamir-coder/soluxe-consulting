@@ -3,7 +3,7 @@
 		<span class="hero__title">
 			{{ $t('hero-title-1') }}
 		</span>
-		<span class="hero__title align-left">
+		<span class="hero__title delay">
 			{{ $t('hero-title-2') }}
 		</span>
 		<div class="hero__box">
@@ -173,11 +173,12 @@ body:not(:has(.preloader.shown)) {
 		font-size: clamp(38px, 9vw, 140px);
 		font-weight: 400;
 		line-height: 1;
+		text-transform: uppercase;
+		text-align: center;
 		@media only screen and (max-width: 768px) {
 			line-height: 1.2;
 		}
-		&.align-left {
-			align-self: flex-start;
+		&.delay {
 			animation-delay: 0.4s;
 		}
 	}
