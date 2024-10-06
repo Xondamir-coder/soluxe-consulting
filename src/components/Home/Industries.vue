@@ -6,7 +6,7 @@
 			</span>
 			<div class="industries__box">
 				<span class="industries__title">{{ $t('industries-title-4') }}</span>
-				<Ornament class="industries__ornament" />
+				<Ornament id="industries-ornament" class="industries__ornament" />
 			</div>
 			<p class="industries__text section-text">
 				{{ $t('industries-text') }}
@@ -63,6 +63,15 @@ onMounted(() => {
 				scrub: 1
 			}
 		});
+	});
+	gsap.to('#industries-ornament', {
+		rotate: 360,
+		scrollTrigger: {
+			trigger: '.industries__content',
+			start: 'top center',
+			end: 'bottom top',
+			scrub: 1
+		}
 	});
 });
 </script>

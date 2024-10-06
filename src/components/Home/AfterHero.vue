@@ -1,9 +1,5 @@
 <template>
 	<section class="after">
-		<div class="after__labels">
-			<SectionLabel>{{ $t('link-services') }}</SectionLabel>
-			<SectionLabel>{{ $t('recruitment') }}</SectionLabel>
-		</div>
 		<div class="after__images">
 			<img
 				alt="banners"
@@ -24,10 +20,6 @@
 	gap: max(1.5rem, 20px);
 	position: relative;
 	z-index: 10;
-	&__labels {
-		display: flex;
-		gap: 10px;
-	}
 	&__images {
 		display: grid;
 		& > * {
@@ -50,7 +42,6 @@
 </style>
 
 <script setup>
-import SectionLabel from '../SectionLabel.vue';
 import image1 from '@/images/after-1.avif';
 import image2 from '@/images/after-2.avif';
 import image3 from '@/images/after-3.avif';
