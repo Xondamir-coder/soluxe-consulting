@@ -17,6 +17,9 @@
 	grid-column: 3 / 4;
 	grid-row: 2/3;
 	justify-self: center;
+	@media only screen and (max-width: 500px) {
+		display: none;
+	}
 }
 .services__cards {
 	margin-top: 5rem;

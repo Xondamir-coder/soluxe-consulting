@@ -70,7 +70,8 @@ onMounted(() => {
 	// Create a timeline
 	let tl = gsap.timeline({
 		scrollTrigger: {
-			trigger: '.hero',
+			markers: true,
+			trigger: window.innerWidth > 600 ? '.hero' : '.after__images',
 			endTrigger: '.services',
 			start: 'center center',
 			end: 'bottom center',
